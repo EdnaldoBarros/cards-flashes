@@ -1,33 +1,29 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Card } from './Card'
+import { NavBar } from './NavBar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const questions = [
+    {text: "O que é JSX?", answer: "Uma extensão de linguagem do JavaScript"},
+    {text: "O que é React?", answer: "Uma biblioteca JavaScript para construção de interfaces"},
+    {text: "O que é Vite?", answer: "Uma ferramenta de build que permite desenvolvimento rápido"},
+    {text: "O que é um componente?", answer: "Uma parte reutilizável de UI"},
+    {text: "O que é estado em React?", answer: "Uma forma de armazenar dados que podem mudar ao longo do tempo"},
+  ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [answerIsVisible, setAnswerIsVisible] = useState(false)
+  
+
+  const currentQuestion = questions[currentIndex]
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Card text={answerIsVisible ? currentQuestion.answer : currentQuestion.text}/>
+      <NavBar setCurrentIndex={setCurrentIndex} currentIndex={currentIndex}/>
+      setCurrentIndex={setCurrentIndex}
+      lastIndex={lastIndex}
     </>
   )
 }
